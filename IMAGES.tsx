@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { View, StyleSheet, Text, ScrollView, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { ImageComponent } from './components/ImageComponent';
 
 const images = [
   'https://nannersbruh.com/wp-content/uploads/2021/12/RNI-Films-IMG-B8564AF5-B2BC-41A3-A9A1-1A8C94E8480A.jpg',
@@ -8,14 +9,7 @@ const images = [
   'https://nannersbruh.com/wp-content/uploads/2022/01/img_5076-1_original.jpg',
 ];
 
-const screenWidth = Dimensions.get('window').width;
-const paddingSpace = 20; // Total whitespace (10px on each side)
-const imageWidth = screenWidth - paddingSpace; // Adjusted image width
-
 export const IMAGES = ({ navigation }) => {
-  // Function to apply rainbow colors to each letter of "Color"
-  const [imageSizes, setImageSizes] = useState({});
-
   const renderRainbowText = () => {
     const word = "Color";
     const colors = ['#990000', '#995c00', '#7a9900', '#009999', '#003d99', '#7a0099', '#99005c'];
@@ -24,16 +18,6 @@ export const IMAGES = ({ navigation }) => {
         {char}
       </Text>
     ));
-  };
-
-  const onImageLoad = (event, uri) => {
-    const { width, height } = event.nativeEvent.source;
-    const aspectRatio = height / width;
-    const adjustedHeight = imageWidth * aspectRatio;
-    setImageSizes((prevSizes) => ({
-      ...prevSizes,
-      [uri]: { width: imageWidth, height: adjustedHeight },
-    }));
   };
 
   return (
@@ -54,13 +38,7 @@ export const IMAGES = ({ navigation }) => {
         </Text>
       </View>
       {images.map((imageUrl, index) => (
-        <View key={index} style={styles.imageContainer}>
-          <Image
-            source={{ uri: imageUrl }}
-            style={[styles.image, imageSizes[imageUrl] ? { height: imageSizes[imageUrl].height } : undefined]}
-            onLoad={(event) => onImageLoad(event, imageUrl)}
-          />
-        </View>
+        <ImageComponent imageUrl={imageUrl} index={index} />
       ))}
     </ScrollView>
   );
@@ -77,16 +55,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 15,
-  },
-  imageContainer: {
-    marginBottom: 10,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
-    borderWidth: 2, // Set border width to make it thick
-    borderColor: 'black', // Set border color to black
   },
 });
 

@@ -11,12 +11,13 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        lazy={false}
         screenOptions={{
           headerShown: false
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="IMAGES" component={IMAGES} />
+        <Stack.Screen name="Home" component={HomeScreen} lazy={false}/>
+        <Stack.Screen name="IMAGES" component={IMAGES} lazy={false}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
