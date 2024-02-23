@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { ImageComponent } from './components/ImageComponent';
+import { ImageComponent } from '../components/ImageComponent';
 
 const images = [
   'https://nannersbruh.com/wp-content/uploads/2021/12/RNI-Films-IMG-B8564AF5-B2BC-41A3-A9A1-1A8C94E8480A.jpg',
@@ -38,7 +38,7 @@ export const IMAGES = ({ navigation }) => {
         </Text>
       </View>
       {images.map((imageUrl, index) => (
-        <ImageComponent imageUrl={imageUrl} index={index} />
+        <ImageComponent imageUrl={imageUrl} index={index} key={index}/>
       ))}
     </ScrollView>
   );
@@ -59,4 +59,3 @@ const styles = StyleSheet.create({
 });
 
 export default IMAGES;
-

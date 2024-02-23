@@ -37,7 +37,6 @@ export const ImageComponent = ({imageUrl, index}) => {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    marginBottom: 10,
   },
   image: {
     width: '100%',

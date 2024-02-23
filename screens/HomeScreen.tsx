@@ -2,9 +2,6 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { textChangeRangeIsUnchanged } from 'typescript';
 
-// TODO:
-// - Reusable image component
-
 export const HomeScreen = ({navigation}) => {
   const rainbowText = "Up-To-Date".split('').map((char, index) => (
     <Text key={index} style={[styles.rainbowText, {color: getColor(index)}]}>
@@ -21,7 +18,14 @@ export const HomeScreen = ({navigation}) => {
       IMAGES</Text>
       <Text style={styles.textRow}>{rainbowText}</Text>
       <Text style={styles.plus}>+</Text>
-      <Text style={{...styles.textDecoration, marginBottom: 0}}>about</Text>
+      <Text
+        style={{...styles.textDecoration, marginBottom: 0}}
+        onPress={() => navigation?.navigate('About')}
+      >
+      about
+      </Text>
+
+      <Text onPress={() => navigation.navigate('Gallery')}>GALLERY</Text>
     </View>
   );
 };
@@ -60,4 +64,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-
